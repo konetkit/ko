@@ -18,6 +18,23 @@ def ping(host: str,
     else:
         typer.echo("Chế độ không hợp lệ")
 
+
+from ko.commands.telnet.extlib import telnet as telnet_extlib
+from ko.commands.telnet.mycode import telnet as telnet_mycode
+from ko.commands.telnet.system import telnet as telnet_system
+
+@app.command()
+def telnet(host: str, port: int = 23, mode: str = "system"):
+    if mode == "system":
+        telnet_system(host, port)
+    elif mode == "extlib":
+        telnet_extlib(host, port)
+    elif mode == "mycode":
+        telnet_mycode(host, port)
+    else:
+        typer.echo(f"Unknown mode: {mode}")
+
+
 @app.command()
 def noop():
     pass
