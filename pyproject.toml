@@ -1,0 +1,41 @@
+[project]
+name = "ko"
+version = "0.1.0"
+description = "Python CLI toolkit for network utilities: ping, ssh, scp, telnet, map."
+authors = [
+    { name = "konetkit" }
+]
+requires-python = ">=3.9,<4.0"
+dependencies = [
+    "typer>=0.16.0",
+    "psutil>=7.0.0",
+    "platformdirs>=4.3.8",
+    "pythonping>=1.1.4",
+]
+
+[project.scripts]
+ko = "ko.cli:app"
+
+[dependency-groups]
+dev = [
+    "pytest<8.0.0,>=7.4.3",
+    "pytest-cov<4.0.0,>=3.0.0",
+    "pytest-asyncio>=0.23.8",
+    "pydash>=8.0.5",
+    "mypy<2.0.0,>=1.8.0",
+]
+lint = [
+    "ruff<1.0.0,>=0.2.2",
+    "pre-commit<4.0.0,>=3.6.2",
+]
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["demo", "src"]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
