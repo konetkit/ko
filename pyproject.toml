@@ -11,6 +11,8 @@ dependencies = [
     "psutil>=7.0.0",
     "platformdirs>=4.3.8",
     "pythonping>=1.1.4",
+    "telnetlib3>=2.0.4",
+    "aioconsole>=0.8.1",
 ]
 
 [project.scripts]

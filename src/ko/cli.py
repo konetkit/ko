@@ -20,15 +20,21 @@ def ping(host: str,
 
 
 from ko.commands.telnet.extlib import telnet as telnet_extlib
+from ko.commands.telnet.extlib_legacy import telnet as telnet_extlib_legacy
 from ko.commands.telnet.mycode import telnet as telnet_mycode
 from ko.commands.telnet.system import telnet as telnet_system
 
 @app.command()
-def telnet(host: str, port: int = 23, mode: str = "system"):
+def telnet(host: str, port: int = 23, mode: str = "system", legacy: bool = False):
     if mode == "system":
         telnet_system(host, port)
     elif mode == "extlib":
-        telnet_extlib(host, port)
+        if legacy:
+            telnet_extlib_legacy(host, port)
+        else:
+            telnet_extlib(host, port)
+    elif mode == "legacy":
+        telnet_legacy_extlib(host, port)
     elif mode == "mycode":
         telnet_mycode(host, port)
     else:
