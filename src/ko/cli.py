@@ -41,6 +41,9 @@ def telnet(host: str, port: int = 23, mode: str = "system", legacy: bool = False
         typer.echo(f"Unknown mode: {mode}")
 
 
+from ko.commands.ncat.cli import app as sub_ncat
+app.add_typer(sub_ncat)
+
 @app.command()
 def noop():
     pass
