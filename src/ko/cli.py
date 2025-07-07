@@ -2,22 +2,6 @@ import typer
 
 app = typer.Typer()
 
-from ko.commands.ping.extlib import ping as ping_extlib
-from ko.commands.ping.mycode import ping as ping_mycode
-from ko.commands.ping.system import ping as ping_system
-
-@app.command()
-def ping(host: str,
-        mode: str = typer.Option("system", help="extlib | mycode | system")):
-    if mode == "system":
-        ping_system(host)
-    elif mode == "extlib":
-        ping_extlib(host)
-    elif mode == "mycode":
-        ping_mycode(host)
-    else:
-        typer.echo("Chế độ không hợp lệ")
-
 
 from ko.commands.telnet.extlib import telnet as telnet_extlib
 from ko.commands.telnet.extlib_legacy import telnet as telnet_extlib_legacy
@@ -43,6 +27,9 @@ def telnet(host: str, port: int = 23, mode: str = "system", legacy: bool = False
 
 from ko.commands.ncat.cli import app as sub_ncat
 app.add_typer(sub_ncat)
+
+from ko.commands.ping.cli import app as sub_ping
+app.add_typer(sub_ping)
 
 @app.command()
 def noop():
